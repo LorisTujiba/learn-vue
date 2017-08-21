@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learn Vue JS</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../../semantic/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <script src="../../semantic/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div class="ui container">
+      <!--
+        V-Model, Two Way data binding, can reassign the value of a variable from a component
+      -->
+      <div id="app">
+
+          <div class="ui olive segments">
+            <div class="ui segment">
+              <input type="text" placeholder="name" v-model="name">
+              <p>{{ name }}</p>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el : '#app',
+      data : {
+        name : 'Max'
+      }
+    });
+  </script>
+</html>

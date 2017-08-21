@@ -1,0 +1,25 @@
+{
+  "name": "learn-vue",
+  "version": "1.0.0",
+  "description": "Create Vue App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LorisTujiba/learn-vue.git"
+  },
+  "keywords": [
+    "Vue"
+  ],
+  "author": "Loris Tujiba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LorisTujiba/learn-vue/issues"
+  },
+  "homepage": "https://github.com/LorisTujiba/learn-vue#readme",
+  "dependencies": {
+    "semantic-ui": "^2.2.13"
+  }
+}

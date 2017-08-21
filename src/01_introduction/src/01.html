@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Learn Vue JS</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../../semantic/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <script src="../../semantic/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div class="ui container">
+      <div id="app">
+        <p v-once>{{ title }}</p>
+        <p>{{ sayWhat() }}</p>
+        <!--
+          Need to bind first!
+          <a href="{link}"></a> would not work
+        -->
+        <a v-bind:href="link"><h6>Go to Google</h6></a>
+        <p v-html="finishedLink"></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      /*==================================================
+        Vue JS
+      ====================================================
+      Vue, a ui library that will automatically re-renders
+      the page if a property changes. To use vue, create
+      a new instance with this properties.
+        - el, the element that vue will control
+        - data, the properties to manipulate
+        - methods, a list of functions that can be called
+      */
+      el : '#app',
+      data : {
+        title : 'Hello World!',
+        link : 'http://google.com',
+        finishedLink : '<a href="http://facebook.com"><h6>Go to Facebook</h6></a>'
+      },
+      methods : {
+        sayWhat : function(){
+          this.title = "Hello only!"
+          return 'What?';
+          /*===========================================================================
+            v-once
+          =============================================================================
+          This block of code will change the title property into 'Hello Only!'. If we
+          because when a property changes, vue will automatically re renders, if you
+          want to specifies element that will only renders once, we can add v-once
+          on the desired element.*/
+          /*===========================================================================
+            v-html
+          =============================================================================
+          Renders an html code and note as a normal text*/
+        }
+      }
+    });
+  </script>
+</html>

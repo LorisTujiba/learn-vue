@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learn Vue JS</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../../semantic/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <script src="../../semantic/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div class="ui container">
+      <div id="app">
+
+          <div class="ui olive segments">
+            <div class="ui segment">
+              <h4>Mouse Event</h4>
+            </div>
+            <div class="ui segment">
+              <button class="ui button" v-on:click="counter++">Click Me</button>
+              <button class="ui button" v-on:click="increase">Click Me, I'll call a function</button>
+              <button class="ui button" v-on:click="increaseArgs(2, $event)">Click Me (With argument)</button>
+              <p>{{ counter }}</p>
+              <!-- Below is ternary operation-->
+              <p>{{ counter > 10 ? 'Greater than 10' : 'lesser than 10' }}</p>
+              <span v-on:mousemove="updateCoordinates">Coordinates : x : {{ x }} , y : {{ y }}</span>
+              <!-- Stop the propagation of event-->
+              <span v-on:mousemove.stop="">Dead Spot</span>
+            </div>
+            <div class="ui segment">
+              <h4>Key Event</h4>
+            </div>
+            <!-- Below is the keyboard listener -->
+            <div class="ui segment">
+              <form class="ui form" action="">
+                <div class="field">
+                  <label>Input Text</label>
+                  <input type="text" placeholder="without enter event modifier..." v-on:keyup="printConsole">
+                </div>
+                <div class="field">
+                  <!--Below is the key modifier with enter key, Only executed with enter button-->
+                  <label>Input Text</label>
+                  <input type="text" placeholder="with key event modifier..." v-on:keyup.enter="printConsole">
+                </div>
+                <div class="field">
+                  <!--Below is the key modifier with enter and space keys, Only executed with enter and space button-->
+                  <label>Input Text</label>
+                  <input type="text" placeholder="with keys (enter and space) event modifier..." v-on:keyup.enter.space="printConsole">
+                </div>
+              </form>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el : '#app',
+      data : {
+        counter: 0,
+        x : 0,
+        y :0
+      },
+      methods : {
+        increase : function(){
+          this.counter+=1;
+        },
+        increaseArgs : function(step, event){
+          this.counter += step;
+        },
+        updateCoordinates : function(event){
+          this.x = event.clientX,
+          this.y = event.clientY
+        },
+        printConsole : function(event){
+          console.log(event.target.value);
+        }
+      }
+    });
+  </script>
+</html>
