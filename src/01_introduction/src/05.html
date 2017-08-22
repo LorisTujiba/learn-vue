@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learn Vue JS</title>
+    <meta charset="utf-8"/>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+      .red{
+        background-color: red;
+      }
+      .blue{
+        background-color: blue;
+      }
+      .green{
+        background-color: green;
+      }
+      .blank{
+        background-color: gray;
+      }
+      button{
+        border : none;
+        border-radius : 5px;
+        width: 150px;
+        height: 70px;
+        cursor: pointer;
+        color : white;
+        font-family: segoe ui;
+        font-weight: bold;
+        display : block;
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ui container">
+      <!--
+        attach a variable to a class
+      -->
+      <div id="app">
+
+          <div>
+            <button :class="divClasses" @click="attachRed = !attachRed">Red</button>
+            <button :class="{red: attachRed}">Blank</button>
+            <button :class="[color, {red: attachRed}]">Can be Forced Red if redAttach is true and color is blank</button>
+            <input type="text" v-model="color">
+          </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el : '#app',
+      data : {
+        attachRed : false,
+        color : 'green',
+      },
+      computed : {
+        divClasses : function(){
+          return {
+            //return red class if attachRed true
+            //vice versa
+            red : this.attachRed,
+            blue : !this.attachRed
+          };
+        }
+      }
+    });
+  </script>
+</html>

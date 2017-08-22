@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learn Vue JS</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../../../dependencies/semantic/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <script src="../../../dependencies/semantic/dist/semantic.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div class="ui container">
+      <div id="app">
+
+          <div class="ui olive segments">
+            <div class="ui segment">
+              <h5>Open the console as you presses these buttons</h5>
+              <!-- can simply use @click -->
+              <!-- for bind, can simply use :href -->
+              <button v-on:click="counter++" class="ui button">Increase</button>
+              <button @click="counter--" class="ui button">Decrease</button>
+              <button v-on:click="secondCounter++" class="ui button">SecondCounter</button>
+              <a :href="link">Link</a>
+            </div>
+            <!-- If secondCounter increased, the computed will not run -->
+            <div class="ui segment">
+              {{ counter }} | {{ secondCounter }}
+              <h5>Displays counter with methods  : {{ displayResultMethod() }}</h5>
+              <h5>Displays counter with computed : {{ displayResultComputed }}</h5>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    /*=================================================================
+      Computed
+    ===================================================================
+    One thing that essential to know is that methods properties will be
+    executed every time you called it. It will causes the page to keep
+    re-renders everytime even though it is not necessarry. So, to
+    solve that problem, we use computed property. If you use
+    computed, you call the function like you called data.
+    */
+
+    new Vue({
+      el : '#app',
+      data : {
+        counter : 0,
+        secondCounter : 0,
+        link : 'http://google.com'
+      },
+      computed : {
+        displayResultComputed : function(){
+          console.log('computed');
+          return this.counter > 5 ? 'Greater than 5' : 'Lesser than 5'
+        }
+      },
+      watch : {
+        //wil watch a certain data, then assign some function
+        //to control it
+        counter : function(value){
+          var wm = this;
+          setTimeout(function(){
+            wm.counter = 0;
+          },2000)
+        }
+      },
+      methods : {
+        displayResultMethod : function(){
+          console.log('methods');
+          return this.counter > 5 ? 'Greater than 5' : 'Lesser than 5'
+        }
+      }
+    });
+  </script>
+</html>
